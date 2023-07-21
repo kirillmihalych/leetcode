@@ -1,5 +1,6 @@
 // Binary search
 // https://leetcode.com/problems/search-in-rotated-sorted-array/
+// Time O(log(n))
 var search = (nums, target) => {
   let [left, right] = [0, nums.length - 1]
 

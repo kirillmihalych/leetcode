@@ -1,5 +1,6 @@
 // Binary search
 // https://leetcode.com/problems/binary-search/
+// Time O(log(n))
 
 const search = function (nums, target) {
   let l = 0
@@ -7,7 +8,6 @@ const search = function (nums, target) {
 
   while (l <= r) {
     let m = Math.round((l + r) / 2)
-    // if(m < 1) m = 1;
 
     if (nums[m] > target) r = m - 1
     if (nums[m] < target) l = m + 1
