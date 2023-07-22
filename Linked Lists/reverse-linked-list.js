@@ -14,3 +14,5 @@ var reverseList = function (head) {
 
   return prev
 }
+
+// recursive solution
