@@ -1,4 +1,4 @@
-// dummy node because of adding/removing
+// dummy node goes before the head, because of adding/removing
 // https://leetcode.com/problems/merge-two-sorted-lists/submissions/
 // Time O(n) || Space O(n)
 
