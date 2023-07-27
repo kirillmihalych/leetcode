@@ -1,5 +1,6 @@
 // Stack
 // добавлять закрытые в стак, и если пара не открыта, сверять со стаком
+// Time O(n) || Space O(n)
 // https://leetcode.com/problems/valid-parentheses/submissions/
 var isValid = function (s, stack = []) {
   for (const char of s.split('')) {
