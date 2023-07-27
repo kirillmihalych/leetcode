@@ -27,19 +27,14 @@ var isPalindrome = function (s) {
   return true
 }
 
-// Brute force
+// Array
+// Time O(n) || Space O(n)
+
 var isPalindrome = function (s) {
-  if (!s.length) return true
-
-  const alphaNumeric = filterAlphaNumeric(s)
-  const reversed = reverse(alphaNumeric)
-
-  return alphaNumeric === reversed
+  const reversed_str = reverse_str(alphanumeric_str(s))
+  return alphanumeric_str(s) === reversed_str
 }
 
-const filterAlphaNumeric = (
-  str,
-  nonAlphaNumeric = new RegExp('[^a-z0-9]', 'gi')
-) => str.toLowerCase().replace(nonAlphaNumeric, '')
+const alphanumeric_str = (str) => str.replace(/[^a-z0-9]/gi, '').toLowerCase()
 
-const reverse = (str) => str.split('').reverse().join('')
+const reverse_str = (str) => str.split('').reverse().join('')
