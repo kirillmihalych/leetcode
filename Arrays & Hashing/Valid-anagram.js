@@ -1,4 +1,5 @@
 // Redirected
+// Time O(n log n) || Space O(n)
 // https://leetcode.com/problems/valid-anagram/submissions/
 var isAnagram = function (s, t) {
   return redirected(s) === redirected(t) ? true : false
@@ -12,6 +13,7 @@ const redirected = function (str) {
 }
 
 // Hash map solution
+// Time O(n) || Space O(n)
 
 var isAnagram = function (s, t) {
   return compareWords(s, t)
