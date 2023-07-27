@@ -1,4 +1,5 @@
 // Brute force solution
+// Time O(n^2) || Space O(n)
 // leetcode.com/problems/two-sum/
 
 var twoSum = function (nums, target) {
@@ -18,6 +19,7 @@ var twoSum = function (nums, target) {
 }
 
 // Hash map solution
+// Time O(n) || Space O(n)
 const twoSum = function (nums, target) {
   const hash = getHash(nums)
   return findSum(hash, nums, target)
