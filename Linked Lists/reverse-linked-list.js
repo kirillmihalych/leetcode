@@ -1,4 +1,5 @@
 // iterative solution
+// Time O(n) || Space(1)
 // https://leetcode.com/problems/reverse-linked-list/submissions/
 
 var reverseList = function (head) {
