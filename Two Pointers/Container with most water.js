@@ -1,4 +1,5 @@
 // 2 Pointers
+// Time O(n) | Space(1)
 // https://leetcode.com/problems/container-with-most-water/
 const maxArea = function (height) {
   let maxAmount = 0
