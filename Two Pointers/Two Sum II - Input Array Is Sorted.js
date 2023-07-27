@@ -1,4 +1,5 @@
 // 2 Pointers
+// Time O(n) || Space O(n)
 // https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 var twoSum = function (numbers, target) {
   let min = 0

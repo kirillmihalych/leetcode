@@ -1,4 +1,5 @@
 // Brute Force solution
+// Time O(log n) || Space O(n)
 // https://leetcode.com/problems/top-k-frequent-elements/
 var topKFrequent = function (nums, k) {
   const hash = new Map()

@@ -1,4 +1,5 @@
 // hash map solution
+// Time O(n * n log n) || Space O(n)
 // https://leetcode.com/problems/group-anagrams/
 var groupAnagrams = function (strs) {
   const hash = getHash(strs)
