@@ -1,32 +1,32 @@
 // 2 Pointer
+// Time O(???)
 // https://leetcode.com/problems/3sum/
-const threeSum = function (nums) {
-  const res = []
-  const target = 0
+var threeSum = function (nums, target = 0) {
+  let result = []
   nums.sort((a, b) => a - b)
 
   for (let i = 0; i < nums.length; i++) {
-    let num = nums[i]
-    if (i > 0 && num === nums[i - 1]) continue
-
-    let j = i + 1
     let k = nums.length - 1
+    let j = i + 1
 
+    if (i > 0 && nums[i] === nums[i - 1]) continue
     while (j < k) {
-      let threeSum = num + nums[j] + nums[k]
+      let threeSum = nums[i] + nums[j] + nums[k]
+      const isTarget = threeSum === target
 
-      if (threeSum > target) {
-        k--
-      } else if (threeSum < target) {
+      if (threeSum < target) {
         j++
+      } else if (threeSum > target) {
+        k--
       } else {
-        res.push([num, nums[j], nums[k]])
+        result.push([nums[i], nums[j], nums[k]])
+        while (nums[j] === nums[j + 1]) j++
+        while (nums[k] === nums[k - 1]) k--
         j++
         k--
-        while (nums[j] === nums[j - 1] && j < k) j++
       }
     }
   }
 
-  return res
+  return result
 }
