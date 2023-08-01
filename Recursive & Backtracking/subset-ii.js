@@ -1,31 +1,32 @@
 // dfs, but backtracking is hard part.
 // Time ?? || Space ??
 // https://leetcode.com/problems/subsets-ii
-var subsetsWithDup = function (nums) {
-  const result = []
+const subsetsWithDup = function (nums) {
   nums.sort((a, b) => a - b)
 
-  const dfs = (i, nums, slate) => {
-    //  base case
-    if (i === nums.length) {
-      result.push(slate.slice())
-      return
-    }
-    //  recursive
-    dfs(i + 1, nums, slate)
-
-    slate.push(nums[i])
-    dfs(i + 1, nums, slate)
-    slate.pop()
-  }
-
-  dfs(0, nums, [])
-
+  const subres = dfs(nums)
   const hash = new Map()
-  for (const el of result) {
+
+  for (const el of subres) {
     if (hash.has(el.toString())) continue
     hash.set(el.toString(), el)
   }
 
   return [...hash.values()]
+}
+
+const dfs = (nums, level = 0, set = [], subset = []) => {
+  subset.push(set.slice())
+
+  for (let i = level; i < nums.length; i++) {
+    backTrack(nums, i, set, subset)
+  }
+
+  return subset
+}
+
+const backTrack = (nums, i, set, subset) => {
+  set.push(nums[i])
+  dfs(nums, i + 1, set, subset)
+  set.pop()
 }
