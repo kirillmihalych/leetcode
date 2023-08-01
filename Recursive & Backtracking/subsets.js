@@ -2,27 +2,23 @@
 // Time ??? || Space ??
 // https://leetcode.com/problems/subsets/
 
-var subsets = function (nums) {
-  const result = []
+const subsets = function (nums) {
+  return dfs(nums)
+}
 
-  const dfs = (i, nums, slate) => {
-    // base case
-    if (i === nums.length) {
-      result.push(slate.slice())
-      return
-    }
+const dfs = (nums, level = 0, set = [], subset = []) => {
+  // base case
+  subset.push(set.slice())
 
-    // recursive case
-    // include
-    dfs(i + 1, nums, slate)
-
-    // exclude
-    // backtrack
-    slate.push(nums[i])
-    dfs(i + 1, nums, slate)
-    slate.pop()
+  for (let i = level; i < nums.length; i++) {
+    backTrack(i, nums, set, subset)
   }
 
-  dfs(0, nums, [])
-  return result
+  return subset
+}
+
+const backTrack = (i, nums, set, subset) => {
+  set.push(nums[i])
+  dfs(nums, i + 1, set, subset)
+  set.pop()
 }
