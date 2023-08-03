@@ -5,25 +5,26 @@ var letterCombinations = function (digits) {
   return dfs(digits)
 }
 
-const dfs = (digits, combination = [], combinations = []) => {
-  const isBaseCase = !digits
+const dfs = (digits, combination = [], combinations = [], i = 0) => {
+  if (digits.length === 0) return []
+  const isBaseCase = i === digits.length
   if (isBaseCase) {
-    if (combination.length) combinations.push(combination.join(''))
+    combinations.push(combination.join(''))
     return combinations
   }
 
-  let letters = phoneButtons[digits[0]]
+  let chars = phoneButtons[digits[i]]
 
-  for (const char of letters) {
-    backTrack(char, digits, combination, combinations)
+  for (const char of chars) {
+    backTrack(digits, char, combination, combinations, i)
   }
 
   return combinations
 }
 
-const backTrack = (char, digits, combination, combinations) => {
+const backTrack = (digits, char, combination, combinations, i) => {
   combination.push(char)
-  dfs(digits.slice(1), combination, combinations)
+  dfs(digits, combination, combinations, i + 1)
   combination.pop(char)
 }
 
