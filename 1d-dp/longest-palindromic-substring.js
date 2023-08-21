@@ -1,33 +1,38 @@
-// ???
+// Expand around center
 // Time O(n^2)|| Space O(n)
 // https://leetcode.com/problems/longest-palindromic-substring/
-const getDrome = (left, right, str) => {
-  while (left >= 0 && right <= str.length) {
-    if (str[left] !== str[right]) break
-    left--
-    right++
-  }
-
-  return [left + 1, right]
-}
-
-const longestPalindrome = function (s) {
-  let max = [0, 1]
+var longestPalindrome = function (s) {
+  let longest = ''
 
   for (let i = 0; i < s.length; i++) {
-    const even = getDrome(i - 1, i, s)
-    const odd = getDrome(i - 1, i + 1, s)
-    const currMax = even[1] - even[0] > odd[1] - odd[0] ? even : odd
+    // palindrome can be around one or two chars
+    // define state as s, i, i and s, i, i + 1
+    let palindrome1 = getPalindrome(s, i, i)
+    let palindrome2 = getPalindrome(s, i, i + 1)
 
-    max = max[1] - max[0] > currMax[1] - currMax[0] ? max : currMax
+    let longerPalindrome =
+      palindrome1.length > palindrome2.length ? palindrome1 : palindrome2
+    if (longerPalindrome.length > longest.length) {
+      longest = longerPalindrome
+    }
   }
 
-  return s.slice(max[0], max[1])
+  return longest
+}
+
+const getPalindrome = (str, i, j) => {
+  while (i >= 0 && j <= str.length - 1 && str[i] === str[j]) {
+    i--
+    j++
+  }
+
+  // slice the sub from correct second last iteration
+  return str.slice(i + 1, j)
 }
 
 // WRONG SOLUTION || FAILED ATTEMPT
 
-var longestPalindrome = function (s) {
+var longestPalindrome2 = function (s) {
   let set = new Set(s)
   if (set.size === 1) return s
 
@@ -40,7 +45,7 @@ var longestPalindrome = function (s) {
   let mid = Math.floor((l + r) / 2)
   let isOdd = s.length % 2 !== 0
   if (s.length <= 4) {
-    temp = getPalindrome(s, mid, isOdd)
+    temp = getPalindrome2(s, mid, isOdd)
     if (temp[1] - temp[0] > palindrome[1] - palindrome[0]) {
       palindrome = [temp[0], temp[1]]
     }
@@ -49,7 +54,7 @@ var longestPalindrome = function (s) {
     while (r < s.length) {
       mid = Math.floor((l + r) / 2)
       isOdd = (l + (r + 1)) % 2 !== 0
-      temp = getPalindrome(s, mid, isOdd)
+      temp = getPalindrome2(s, mid, isOdd)
       if (temp[1] - temp[0] > palindrome[1] - palindrome[0]) {
         palindrome = [temp[0], temp[1]]
       }
@@ -61,7 +66,7 @@ var longestPalindrome = function (s) {
   return s.slice(palindrome[0], palindrome[1] + 1)
 }
 
-const getPalindrome = (s, mid, isOdd) => {
+const getPalindrome2 = (s, mid, isOdd) => {
   let palindrome = [mid, mid]
   let left = 0
   let right = s.length - 1
