@@ -1,5 +1,5 @@
 // bit manipulation
-//  Time O(1) | Space O(1)
+// Time O(1) | Space O(1)
 // https://leetcode.com/problems/sum-of-two-integers/
 
 var getSum = function (a, b) {
