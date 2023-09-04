@@ -1,21 +1,28 @@
-// DP - top down, array - Memoization
+// DP - top down memo,
+// Time complexity for recursive solution of this problem
+// will be exponential O(2^N)
+// cause with each call of this function it will be two another calls
+// But with Memo we avoid duplicate calculations
+// So it will be
 // Time O(n) || Space O(n)
 // https://leetcode.com/problems/climbing-stairs
 
-const climbStairs = (n, index = 0, memo = Array(n + 1).fill(0)) => {
-  const isBaseCase1 = n < index
-  if (isBaseCase1) return 0
+const climbStairs = (n) => {
+  const memo = new Map()
 
-  const isBaseCase2 = index === n
-  if (isBaseCase2) return 1
+  const recursive = (n) => {
+    const isBaseCase = n <= 2
+    if (isBaseCase) return n
 
-  const hasSeen = memo[index] !== 0
-  if (hasSeen) return memo[index]
+    if (memo.has(n)) return memo.get(n)
 
-  const [next, nextNext] = [index + 1, index + 2]
-  const left = climbStairs(n, next, memo)
-  const right = climbStairs(n, nextNext, memo)
+    let [oneDown, twoDown] = [n - 1, n - 2]
+    let oneStepDown = recursive(oneDown)
+    let twoStepDown = recursive(twoDown)
+    memo.set(n, oneStepDown + twoStepDown)
 
-  memo[index] = left + right
-  return memo[index]
+    return memo.get(n)
+  }
+
+  return recursive(n)
 }
