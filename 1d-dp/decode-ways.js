@@ -1,5 +1,5 @@
 // dp memo
-// Time ?? || Space ??
+// Time O(n) || Space O(n)
 // https://leetcode.com/problems/decode-ways/
 var numDecodings = function (s) {
   if (s.length < 1) return 0

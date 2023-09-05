@@ -2,20 +2,22 @@
 // Time O(n) || Space O(n)
 // https://leetcode.com/problems/fibonacci-number/
 
-var fib = function (n, memo = new Map()) {
-  const isBaseCase1 = n === 0
-  if (isBaseCase1) return memo.get(n) || 0
-
-  const isBaseCase2 = n === 1
-  if (isBaseCase2) return memo.get(n) || 1
-
-  const hasSeen = memo.has(n)
-  if (hasSeen) return memo.get(n)
-
-  const [oneDown, twoDown] = [n - 1, n - 2]
-  const downOne = fib(oneDown, memo)
-  const downTwo = fib(twoDown, memo)
-
-  memo.set(n, downOne + downTwo)
-  return memo.get(n)
-}
+const fib = function(n) {
+    const memo = new Map();
+    
+    const recursive = (n) => {
+        const isBaseCase = n <= 1
+        if(isBaseCase) return n
+        
+        if(memo.has(n)) return memo.get(n)
+        
+        let [prev, prevPrev] = [n - 1, n - 2]
+        let oneStep = recursive(prev)
+        let twoStep = recursive(prevPrev)
+        memo.set(n, oneStep + twoStep)
+        
+        return memo.get(n)
+    }
+    
+    return recursive(n)
+};
