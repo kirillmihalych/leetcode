@@ -1,33 +1,28 @@
 // Expand around center
 // Time O(n^2)|| Space O(n)
 // https://leetcode.com/problems/longest-palindromic-substring/
-var longestPalindrome = function (s) {
+
+const longestPalindrome = function (s) {
   let longest = ''
 
   for (let i = 0; i < s.length; i++) {
-    // palindrome can be around one or two chars
-    // define state as s, i, i and s, i, i + 1
-    let palindrome1 = getPalindrome(s, i, i)
-    let palindrome2 = getPalindrome(s, i, i + 1)
+    const odd = getDrome(s, i, i)
+    const even = getDrome(s, i, i + 1)
 
-    let longerPalindrome =
-      palindrome1.length > palindrome2.length ? palindrome1 : palindrome2
-    if (longerPalindrome.length > longest.length) {
-      longest = longerPalindrome
-    }
+    const bigger = odd.length > even.length ? odd : even
+    if (bigger.length > longest.length) longest = bigger
   }
 
   return longest
 }
 
-const getPalindrome = (str, i, j) => {
-  while (i >= 0 && j <= str.length - 1 && str[i] === str[j]) {
+const getDrome = (s, i, j) => {
+  while (i >= 0 && j <= s.length - 1 && s[i] === s[j]) {
     i--
     j++
   }
 
-  // slice the sub from correct second last iteration
-  return str.slice(i + 1, j)
+  return s.slice(i + 1, j)
 }
 
 // WRONG SOLUTION || FAILED ATTEMPT

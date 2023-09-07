@@ -1,52 +1,25 @@
-// Time O(n^3) || Space O(1)
-// Brute force
-// https://leetcode.com/problems/palindromic-substrings/
-
-const countSubstrings = (s) => {
-  let count = 0
-
-  for (let i = 0; i < s.length; i++) {
-    for (let j = i; j < s.length; j++) {
-      count += Number(isPalindrome(i, j, s))
-    }
-  }
-
-  return count
-}
-
-const isPalindrome = (left, right, s) => {
-  while (left < right) {
-    if (s[left] !== s[right]) return false
-
-    left++
-    right--
-  }
-
-  return true
-}
-
 // Expand around center
-// Time O(N ^ 2) || Space ??
+// Time O(N ^ 2) || Space O(n)
 // https://leetcode.com/problems/palindromic-substrings
 
-const countSubstringsTwo = function (s) {
-  let count = 0
+const countSubstrings = function (s) {
+  let num = 0
+
   for (let i = 0; i < s.length; i++) {
-    // around one char
-    let amount1 = getPalindromeCount(s, i, i)
-    // around two chars
-    let amount2 = getPalindromeCount(s, i, i + 1)
-    count = count + amount1 + amount2
+    let odd = getDrome(s, i, i)
+    let even = getDrome(s, i, i + 1)
+
+    num = num + odd + even
   }
 
-  return count
+  return num
 }
 
-const getPalindromeCount = (str, i, j, count = 0) => {
-  while (i >= 0 && j <= str.length - 1 && str[i] === str[j]) {
+function getDrome(s, i, j, count = 0) {
+  while (s[i] === s[j] && i >= 0 && j <= s.length - 1) {
     count++
-    i -= 1
-    j += 1
+    j++
+    i--
   }
 
   return count
