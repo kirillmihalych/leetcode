@@ -1,26 +1,29 @@
 // dp memo top-down
-// Time ?? || Space ??
+// Time O(n) || Space O(n)
 // https://leetcode.com/problems/coin-change/
 
-var coinChange = function(coins, amount) {
-    const memo = new Map();
-    let res = Infinity;
-    
-    const dfs = (number) => {
-        if(memo.has(number)) return memo.get(number)
-        if(number === 0) return 0;
-        let res = Infinity;
-        
-        for(let i = coins.length - 1; i >= 0; i--){
-           let coin = coins[i];
-           if(number - coin >= 0) res = Math.min(res, dfs(number - coin))
-        }
-        
-        memo.set(number, res + 1)
-        return res + 1
+const coinChange = function (coins, amount) {
+  let memo = new Map()
+
+  const recursive = (amount) => {
+    if (memo.has(amount)) return memo.get(amount)
+    const isBaseCase1 = amount === 0
+    if (isBaseCase1) return 0
+
+    const isBaseCase2 = amount < 0
+    if (isBaseCase2) return Infinity
+
+    let result = Infinity
+
+    for (let coin of coins) {
+      if (amount >= 0) result = Math.min(result, recursive(amount - coin))
     }
-    
-    
-    const result = dfs(amount)
-    return result === Infinity ? -1 : result
-};
+
+    memo.set(amount, result + 1)
+    return memo.get(amount)
+  }
+
+  let fewest_number = recursive(amount)
+
+  return fewest_number === Infinity ? -1 : fewest_number
+}
