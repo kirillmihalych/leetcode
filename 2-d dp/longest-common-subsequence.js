@@ -1,9 +1,6 @@
-/**
- * DP - Top Down
- * Matrix - Memoization
- * Time O(N * (M^2)) | Space O(N * M)
- * https://leetcode.com/problems/longest-common-subsequence/
- */
+// DP - Top Down
+// Time O(N * (M^2)) | Space O(N * M)
+// https://leetcode.com/problems/longest-common-subsequence/
 
 var longestCommonSubsequence = (
   text1,
