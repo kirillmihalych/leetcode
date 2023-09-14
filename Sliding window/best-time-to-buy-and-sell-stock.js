@@ -1,4 +1,4 @@
-// Sliding window, сохраняю одно значение и другое двигаю.
+// Sliding windows
 // https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 // Time O(n) || Space O(n)
 var maxProfit = function (prices) {
