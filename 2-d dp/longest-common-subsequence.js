@@ -15,39 +15,24 @@ var longestCommonSubsequence = (
   const hasSeen = memo[p1][p2] !== null
   if (hasSeen) return memo[p1][p2]
 
-  return dfs(
-    text1,
-    text2,
-    p1,
-    p2,
-    memo
-  ) /* Time O((N * M) * M)) | Space O((N * M) + HEIGHT) */
+  return dfs(text1, text2, p1, p2, memo)
 }
 
 var initMemo = (text1, text2) =>
   new Array(text1.length + 1)
-    .fill() /* Time O(N) | Space O(N) */
-    .map(() =>
-      new Array(text2.length + 1).fill(null)
-    ) /* Time O(M) | Space O(M) */
+    .fill()
+    .map(() => new Array(text2.length + 1).fill(null))
 
 var dfs = (text1, text2, p1, p2, memo) => {
-  const left = longestCommonSubsequence(
-    text1,
-    text2,
-    p1 + 1,
-    p2,
-    memo
-  ) /* Time O(N * M) | Space O(HEIGHT) */
+  const left = longestCommonSubsequence(text1, text2, p1 + 1, p2, memo)
 
-  const index = text2.indexOf(text1[p1], p2) /* Time O(M) */
+  const index = text2.indexOf(text1[p1], p2)
   const isPrefix = index !== -1
 
   const right = isPrefix
-    ? longestCommonSubsequence(text1, text2, p1 + 1, index + 1, memo) +
-      1 /* Time O(N * M) | Space O(HEIGHT) */
+    ? longestCommonSubsequence(text1, text2, p1 + 1, index + 1, memo) + 1
     : 0
 
-  memo[p1][p2] = Math.max(left, right) /*               | Space O(N * M) */
+  memo[p1][p2] = Math.max(left, right)
   return memo[p1][p2]
 }
