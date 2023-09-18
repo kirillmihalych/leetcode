@@ -1,6 +1,7 @@
 // fast and slow pointers
 // https://leetcode.com/problems/reorder-list/
 // Time O(n) || Space O(n)
+
 var reorderList = function (head) {
   const mid = getMid(head) /* Time O(N) */
   const reversedFromMid = reverse(mid) /* Time O(N) */
