@@ -1,6 +1,7 @@
 // Precomputation
 // Time O(n) || Space O(1)
 // https://leetcode.com/problems/maximum-subarray/
+
 const maxSubArray = function (nums) {
   let min = 0
   let max = -Infinity
