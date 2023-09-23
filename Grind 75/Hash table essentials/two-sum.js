@@ -6,19 +6,17 @@ const twoSum = function (nums, target) {
   const result = []
   const map = getMap(nums)
 
-  for (const num of nums) {
-    const key = target - num
+  for (let i = 0; i < nums.length; i++) {
+    const key = target - nums[i]
 
-    if (map.has(key) && map.get(key) !== nums.indexOf(num)) {
-      result.push(map.get(key), nums.indexOf(num))
+    if (map.has(key) && map.get(key) !== i) {
+      result.push(map.get(key), i)
       return result
     }
   }
 }
 
-const getMap = (nums) => {
-  const map = new Map()
-
+const getMap = (nums, map = new Map()) => {
   for (let i = 0; i < nums.length; i++) {
     map.set(nums[i], i)
   }
