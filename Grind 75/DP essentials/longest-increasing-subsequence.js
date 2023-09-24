@@ -1,5 +1,5 @@
 // dp memo
-// Time ?? || Space ??
+// Time O(n ^ 2) || Space O(n)
 // https://leetcode.com/problems/longest-increasing-subsequence/
 
 function lengthOfLIS(nums) {
