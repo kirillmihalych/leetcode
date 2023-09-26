@@ -6,9 +6,12 @@ var reverseList = function (head) {
   let [prev, curr, next] = [null, head, null]
 
   while (curr) {
+    // save next
     next = curr.next
+    // reverse
     curr.next = prev
 
+    // move forward
     prev = curr
     curr = next
   }
