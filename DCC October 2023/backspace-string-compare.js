@@ -1,3 +1,5 @@
+// Time O(n)
+
 const backspaceCompare = (S, T) => {
   return edit(S) === edit(T)
 
